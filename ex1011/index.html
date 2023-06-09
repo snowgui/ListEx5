@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EX 10 - 11 - 12</title>
+</head>
+<style>
+    table,
+    tr {
+        border: 2px solid black;
+        text-align: center;
+    }
+
+    td,
+    th {
+        border: 1px solid black;
+    }
+
+    label {
+        display: block;
+        font-weight: bold;
+    }
+
+    input {
+        margin-bottom: 15px;
+    }
+</style>
+
+<body>
+
+    <h1 style="text-align: center;">Consulta de todos os Produtos</h1>
+    <hr>
+<!-- 
+    <label for="id_nome">Nome do Produto</label>
+    <input type="text" id="id_nome" placeholder="Nome do Produto">
+
+    <label for="id_descricao">Descrição do Produto</label>
+    <input type="text" id="id_descricao" placeholder="Descrição do Produto">
+
+    <label for="id_tipo">Tipo do Produto</label>
+    <input type="text" id="id_tipo" placeholder="Tipo de Produto">
+
+    <br>
+
+    <button style="color:red;" id="id_btnSalvar">Salvar</button>  -->
+    
+
+    <table id="id_table" style="width: 100%;">
+        <tr>
+            <th>Nome</th>
+            <th>Descrição</th>
+            <th>Tipo</th>
+        </tr>
+
+    </table>
+</body>
+
+<script>
+    let baseUrl = "https://s4m01.com/"
+
+    // let baseUrl = "http://127.0.0.1:8000/"
+    // let btnSalvar = document.querySelector("#id_btnSalvar")
+
+    // btnSalvar.addEventListener("click", () => {
+    //     salvarProduto()
+
+    // })
+
+    // const salvarProduto = () => {
+
+    //     let nome = document.getElementById("id_nome").value
+    //     let desc = document.getElementById("id_descricao").value
+    //     let tipo = document.getElementById("id_tipo").value
+
+    //     if (nome == "" || desc == "" || tipo == "") {
+    //         alert("Nome, Descrição e Tipo do Produto São obrigatórios!!")
+    //         return
+    //     }
+
+    //     let data = JSON.stringify({
+    //         "nome": nome,
+    //         "descricao": desc,
+    //         "tipo": tipo
+    //     })
+
+    //     salvarProdutoApi(data)
+
+    // }
+
+    // const salvarProdutoApi = async (data) => {
+
+    //     console.log(JSON.stringify(data))
+    //     let myHeaders = new Headers();
+    //     myHeaders.append('Content-Type', 'application/json');
+
+    //     let myInit = {
+    //         method: 'POST',
+    //         headers: myHeaders,
+    //         mode: 'cors',
+    //         cache: 'default',
+    //         body: data
+    //     };
+
+    //     const response = await fetch(`${baseUrl}api/produto/save`, myInit)
+
+    //     if (response.ok) {
+
+    //         const lst = await response.json()
+    //         return lst
+
+    //     } else {
+
+    //         alert("Erro para se comunicar com API")
+
+    //     }
+
+    // }
+
+    const getProdutos = async () => {
+
+        let myHeaders = new Headers();
+
+        let myInit = {
+            method: 'GET',
+            headers: myHeaders,
+            mode: 'cors',
+            cache: 'default'
+        };
+
+        const response = await fetch(`${baseUrl}api/produto`, myInit)
+
+        if (response.ok) {
+
+            const lst = await response.json()
+            return lst
+
+        } else {
+
+            alert("Erro para se comunicar com API")
+
+        }
+
+    }
+
+    const LoadProdutos = async () => {
+
+        let data = await getProdutos()
+        console.log(data)
+
+        let linha
+        let coluna
+
+        let tabela = document.getElementById("id_table")
+
+        data.forEach(x => {
+
+            linha = null
+            linha = document.createElement("tr")
+
+            colunaNome = null
+            colunaNome = document.createElement("td")
+
+            colunaDesc = null
+            colunaDesc = document.createElement("td")
+
+            colunaTipo = null
+            colunaTipo = document.createElement("td")
+
+            colunaNome.innerHTML = x.nome
+            colunaDesc.innerHTML = x.descricao
+            colunaTipo.innerHTML = x.tipo
+
+            linha.appendChild(colunaNome)
+            linha.appendChild(colunaDesc)
+            linha.appendChild(colunaTipo)
+
+            tabela.appendChild(linha)
+
+        });
+
+    }
+
+    LoadProdutos()
+
+</script>
+
+</html>

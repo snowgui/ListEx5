@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EX 9</title>
+</head>
+
+<body>
+
+    <h1>
+        Carregando Select Box com os Digimons da API
+    </h1>
+
+    <hr>
+    <label for="" style="font-weight: bold;">Lista de Digimons</label><br>
+
+    <select class="form-control" id="id_digimons">
+
+    </select>
+
+    <script>
+        const urlAPiDigimon = "https://digimon-api.vercel.app/api"
+        // let lstDigimon = []
+
+        const getDigimon = async () => {
+
+            let path = "/digimon"
+            let myHeaders = new Headers();
+
+            let myInit = {
+                method: 'GET',
+                headers: myHeaders,
+                mode: 'cors',
+                cache: 'default'
+            };
+
+            const response = await fetch(`${urlAPiDigimon}${path}`, myInit)
+
+            if (response.ok) {
+
+                const lst = await response.json()
+                return lst
+
+            } else {
+
+                alert("Erro para se comunicar com API de Digimons.")
+
+            }
+
+        }
+
+        const LoadSelectDigimon = async () => {
+
+            let data = await getDigimon()
+            console.log(data)
+
+            data.forEach(x => {
+
+                let option_p1 = document.createElement("option")
+                option_p1.value = x.name
+                option_p1.text = x.name
+
+                let select_p1 = document.getElementById("id_digimons")
+
+                select_p1.add(option_p1)
+
+
+            });
+
+        }
+
+        LoadSelectDigimon()
+    </script>
+</body>
+
+</html>

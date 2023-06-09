@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EX 2</title>
+
+    <style>
+        hr {
+            border: red solid 2px;
+            margin: 10px;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Validando Usuário EX - 2</h1>
+
+    <hr>
+
+    <label for="id_usuario">Nome de Usuário</label> <br>
+    <input type="text" id="id_usuario" placeholder="Digite o Nome de Usuário...">
+    <br>
+    <label for="id_senha">Senha</label> <br>
+    <input type="password" id="id_senha" placeholder="Digite a senha...">
+
+    <hr>
+
+    <button id="id_btnExecutar">Executar</button>
+
+    <script>
+        let btnExecutar = document.getElementById("id_btnExecutar")
+        
+        btnExecutar.addEventListener("click", () => {
+
+            do {
+                
+                let usuarioValido = false;
+                
+                let usuario = document.getElementById("id_usuario").value
+                let senha = document.getElementById("id_senha").value
+
+                if (usuario == senha) {
+                    alert("ERRO: nome de usuário e senha não podem ser iguais!")
+                }else{
+                    alert("Sucesso!")
+                    usuarioValido = true;
+                }
+
+                usuario.value = ""
+                senha.value = ""
+                
+            }
+
+
+            while (usuarioValido == false)
+        })
+
+    </script>
+</body>
+
+</html>

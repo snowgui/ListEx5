@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EX 5</title>
+    <style>
+        button{
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        .negrito{
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="id_areaTexto" class="negrito">Hello World</div>
+    <hr>
+    <button id="id_btn_preto">Preto</button> 
+    <button id="id_btn_azul">Azul</button>
+    <button id="id_btn_vermelho">Vermelho</button>
+    <button id="id_btn_verde">Verde</button>
+
+    <script>    
+
+    let areaTexto = document.getElementById("id_areaTexto")
+
+    let btnPreto = document.querySelector("#id_btn_preto")
+    let btnAzul = document.querySelector("#id_btn_azul")
+    let btnVermelho = document.querySelector("#id_btn_vermelho")
+    let btnVerde = document.querySelector("#id_btn_verde")
+
+
+    btnPreto.addEventListener("click", () =>{
+        areaTexto.style = "color:black"
+    })
+
+    
+    btnAzul.addEventListener("click", () =>{
+        areaTexto.style = "color:blue"
+    })
+
+    
+    btnVermelho.addEventListener("click", () =>{
+        areaTexto.style = "color:red"
+    })
+
+    
+    btnVerde.addEventListener("click", () =>{
+        areaTexto.style = "color:green"
+    })
+
+
+    </script>
+    
+</body>
+</html>

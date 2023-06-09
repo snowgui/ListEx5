@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EX 8</title>
+    <style>
+        label {
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Buscar e Alterar itens da lista EX - 8 </h1>
+    <hr>
+
+    <label for="id_item">Nome do Item para alterar</label><br>
+    <input type="text" id="id_item" placeholder="Digite o nome do item para alterar"> <button
+        id="idBtnAlterar">Alterar</button>
+
+    <ul id="id_lista_animais">
+
+    </ul>
+
+    <script>
+        
+        let itensLista = ["Cachorro", "Gato", "Pato", "Rato", "Jacaré"]
+
+        let lista = document.getElementById("id_lista_animais")
+
+        const renderList = () => {
+
+            lista.innerHTML = ""
+            for (item of itensLista) {
+
+                let linha = null
+
+                linha = document.createElement("li")
+                           
+                linha.innerHTML = item
+                lista.appendChild(linha)
+            }
+        }
+
+        renderList()
+
+        let btnAlterar = document.querySelector("#idBtnAlterar")
+
+        btnAlterar.addEventListener("click", () => {
+            let item = document.querySelector("#id_item").value
+
+            itensLista[itensLista.indexOf(item)] = `<span style='font-weight: bold;'>${item}</span>`
+
+            renderList()
+
+
+        })
+    </script>
+</body>
+
+</html>
